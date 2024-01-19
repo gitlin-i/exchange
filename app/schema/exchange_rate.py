@@ -1,14 +1,13 @@
 
 from decimal import Decimal
-from typing import List
-from pydantic import BaseModel
+from pydantic import BaseModel,ConfigDict
 
 class ExchangeRateBase(BaseModel):
-
+    model_config = ConfigDict(
+        from_attributes = True,
+        frozen = False,
+    )
     currency: str
-    class Config:
-        orm_mode = True
-        allow_mutation :False
 
 
 class ExchangeRate(ExchangeRateBase):
